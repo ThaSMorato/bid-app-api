@@ -1,4 +1,4 @@
-import * as users from "../../../../data/users.json";
+import users from "../../../../data/users.json";
 import { User } from "../model/UserModel";
 
 export class UsersRepository {
@@ -20,16 +20,16 @@ export class UsersRepository {
   validateUser(login: string, password: string) {
     //dummy authentication
     const user = this.users.find((u) => u.login === login && u.password === password);
-    if (!!user) throw new Error("Login or password mismatch");
-
-    return user;
+    if (!user) throw new Error("Login or password mismatch");
+    const { avatar_url, bid_alert_at, id, login: userLogin, maximum_bid_amount, name, role } = user;
+    return { avatar_url, bid_alert_at, id, login: userLogin, maximum_bid_amount, name, role };
   }
 
-  getUserById(id: string): User {
+  getUserById(id: string) {
     const user = this.users.find((u) => u.id === id);
 
     if (!user) throw new Error("User not found");
-
-    return user;
+    const { avatar_url, bid_alert_at, id: user_id, login, maximum_bid_amount, name, role } = user;
+    return { avatar_url, bid_alert_at, id: user_id, login, maximum_bid_amount, name, role };
   }
 }

@@ -1,4 +1,4 @@
-import * as products from "../../../../data/products.json";
+import products from "../../../../data/products.json";
 import { Product } from "../model/ProductModel";
 
 export class ProductRepository {
