@@ -28,4 +28,8 @@ export class ProductRepository {
 
     return product;
   }
+
+  newBidOnProduct(productId: string, amount: number) {
+    this.products.find((p) => p.id === productId).last_bid = amount;
+  }
 }
