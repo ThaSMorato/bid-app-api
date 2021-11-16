@@ -30,6 +30,10 @@ export class ProductRepository {
   }
 
   newBidOnProduct(productId: string, amount: number) {
-    this.products.find((p) => p.id === productId).last_bid = amount;
+    const product = this.products.find((p) => p.id === productId);
+
+    if (product.last_bid >= amount) throw new Error("Amount less or equal the actual bid");
+
+    product.last_bid = amount;
   }
 }
