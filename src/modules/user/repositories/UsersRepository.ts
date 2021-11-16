@@ -74,4 +74,15 @@ export class UsersRepository {
 
     return users;
   }
+
+  handleAutobidding(id: string, productId: string) {
+    const user = this.users.find((u) => u.id === id);
+    if (user.products_on_autobid.includes(productId)) {
+      user.products_on_autobid = [
+        ...user.products_on_autobid.filter((prodId) => prodId !== productId),
+      ];
+    } else {
+      user.products_on_autobid.push(productId);
+    }
+  }
 }
