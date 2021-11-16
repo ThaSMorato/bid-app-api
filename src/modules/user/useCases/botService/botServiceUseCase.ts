@@ -11,6 +11,7 @@ export class BotServiceUseCase {
   execute(productId: string, amount: number, userId: string) {
     const users = this.usersRepository.getUserByProductOnAutobid(productId);
     let amountOverTime = amount;
+    let userIdOverTime = userId;
     users
       .sort((a, b) => {
         return (
@@ -20,7 +21,11 @@ export class BotServiceUseCase {
       })
       .map((user) => {
         amountOverTime += 1;
-        if (user.maximum_bid_amount / user.products_on_autobid.length > amountOverTime) {
+        if (
+          user.maximum_bid_amount / user.products_on_autobid.length > amountOverTime &&
+          user.id !== userIdOverTime
+        ) {
+          userIdOverTime = user.id;
           this.productRepository.newBidOnProduct(productId, amountOverTime);
           this.logRepository.create(userId, productId, amountOverTime);
         }
