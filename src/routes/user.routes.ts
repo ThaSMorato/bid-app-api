@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "../middleware/EnsureAuthenticated";
+import { changeConfigsController } from "../modules/user/useCases/changeConfigs";
 import { getUserByIdController } from "../modules/user/useCases/getUserById";
 import { setAutobiddingProductController } from "../modules/user/useCases/setAutobiddingProduct";
 import { userLoginController } from "../modules/user/useCases/userLogin";
@@ -18,4 +19,7 @@ userRoutes.patch("/user/autobid", ensureAuthenticated, (req, res) => {
   setAutobiddingProductController.handle(req, res);
 });
 
+userRoutes.patch("/user/config", ensureAuthenticated, (req, res) => {
+  changeConfigsController.handle(req, res);
+});
 export { userRoutes };
