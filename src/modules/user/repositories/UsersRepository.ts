@@ -68,4 +68,10 @@ export class UsersRepository {
       products_on_autobid,
     };
   }
+
+  getUserByProductOnAutobid(productId: string) {
+    const users = this.users.filter((u) => u.products_on_autobid.includes(productId));
+
+    return users;
+  }
 }
