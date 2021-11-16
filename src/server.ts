@@ -1,8 +1,8 @@
-import { serverHttp } from "./app";
+import { app } from "./app";
 import { botServiceUseCase } from "./modules/user/useCases/botService";
 import { NewBiddingEventEmitter } from "./service/NewBiddingEvent";
 
-serverHttp.listen(4000, () => {
+app.listen(4000, () => {
   console.log("listening on PORT 4000");
 
   const newBiddingEventEmitter = NewBiddingEventEmitter.getInstance();
