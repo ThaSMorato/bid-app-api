@@ -7,4 +7,5 @@ export class User {
   bid_alert_at: number;
   name: string;
   avatar_url: string;
+  products_on_autobid: string[];
 }

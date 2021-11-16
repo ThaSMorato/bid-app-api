@@ -21,15 +21,51 @@ export class UsersRepository {
     //dummy authentication
     const user = this.users.find((u) => u.login === login && u.password === password);
     if (!user) throw new Error("Login or password mismatch");
-    const { avatar_url, bid_alert_at, id, login: userLogin, maximum_bid_amount, name, role } = user;
-    return { avatar_url, bid_alert_at, id, login: userLogin, maximum_bid_amount, name, role };
+    const {
+      avatar_url,
+      bid_alert_at,
+      id,
+      login: userLogin,
+      maximum_bid_amount,
+      name,
+      role,
+      products_on_autobid,
+    } = user;
+    return {
+      avatar_url,
+      bid_alert_at,
+      id,
+      login: userLogin,
+      maximum_bid_amount,
+      name,
+      role,
+      products_on_autobid,
+    };
   }
 
   getUserById(id: string) {
     const user = this.users.find((u) => u.id === id);
 
     if (!user) throw new Error("User not found");
-    const { avatar_url, bid_alert_at, id: user_id, login, maximum_bid_amount, name, role } = user;
-    return { avatar_url, bid_alert_at, id: user_id, login, maximum_bid_amount, name, role };
+    const {
+      avatar_url,
+      bid_alert_at,
+      id: user_id,
+      login,
+      maximum_bid_amount,
+      name,
+      role,
+      products_on_autobid,
+    } = user;
+    return {
+      avatar_url,
+      bid_alert_at,
+      id: user_id,
+      login,
+      maximum_bid_amount,
+      name,
+      role,
+      products_on_autobid,
+    };
   }
 }
